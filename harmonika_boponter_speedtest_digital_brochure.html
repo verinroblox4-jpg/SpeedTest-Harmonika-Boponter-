@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonika Boponter - Speedtest & Brosur Digital WiFi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        cyanAccent: '#00f2fe',
+                        darkBg: '#070d1e',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        neon: '0 0 25px rgba(14, 165, 233, 0.45)',
+                        neonCyan: '0 0 25px rgba(0, 242, 254, 0.55)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070d1e;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism styling */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 242, 254, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(14, 165, 233, 0.35);
+        }
+
+        /* Speedometer gauge animation styles */
+        .gauge-svg {
+            transform: rotate(-90deg);
+        }
+
+        .gauge-meter {
+            transition: stroke-dashoffset 0.12s linear;
+        }
+
+        /* Animated grid background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Glowing aura pulse */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.35; transform: scale(1); }
+            50% { opacity: 0.75; transform: scale(1.08); }
+        }
+
+        .pulse-aura {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-darkBg min-h-screen flex flex-col bg-grid-pattern selection:bg-brand-500 selection:text-white">
+
+    <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Name -->
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-cyanAccent p-0.5 shadow-neon">
+                        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                            <!-- Custom SVG Logo Matching Harmonika ID Brand -->
+                            <svg class="w-7 h-7 text-cyanAccent" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 25 V75 M25 50 L50 25 V75" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M50 35 A 25 25 0 0 1 75 60" stroke="#0ea5e9" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M50 20 A 40 40 0 0 1 90 60" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+                                <circle cx="25" cy="25" r="7" fill="currentColor"/>
+                                <circle cx="25" cy="75" r="7" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl sm:text-2xl font-black tracking-tight text-white">Harmonika<span class="text-brand-400">ID</span></span>
+                            <span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 font-bold border border-brand-500/30">Boponter</span>
+                        </div>
+                        <p class="text-xs text-slate-400 hidden sm:block">Internet Cepat, Stabil & Tanpa FUP</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center gap-3">
+                    <a href="#speedtest" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-white hover:bg-slate-800/80 transition">
+                        <i class="fa-solid fa-gauge-high text-brand-400"></i> Speedtest
+                    </a>
+                    <a href="#brosur" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-white hover:bg-slate-800/80 transition">
+                        <i class="fa-solid fa-tags text-cyanAccent"></i> Paket Harga
+                    </a>
+                    <a href="#kontak" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyanAccent hover:from-brand-500 hover:to-cyanAccent text-slate-950 font-extrabold text-xs sm:text-sm shadow-neon transition duration-200">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Pasang Sekarang</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-10 pb-6 text-center px-4 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl pointer-events-none pulse-aura"></div>
+        <div class="max-w-3xl mx-auto relative z-10 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-wifi"></i> WiFi Rumah Unlimited Boponter
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+                Uji Kecepatan & Pilih Paket <br class="hidden sm:inline" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-cyanAccent to-white">Harmonika Boponter</span>
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+                Cek performa jaringan Anda secara akurat dan nikmati koneksi fiber optic super cepat tanpa batasan kuota untuk seluruh keluarga.
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-16">
+
+        <section id="speedtest" class="glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl border border-slate-800">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Server Selector & Status Header -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800/80">
+                    <div class="flex items-center gap-3 text-sm text-slate-300">
+                        <i class="fa-solid fa-server text-brand-400 text-lg"></i>
+                        <span class="font-medium">Server Lokasi:</span>
+                        <select id="serverSelect" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs sm:text-sm font-semibold text-cyanAccent focus:outline-none focus:border-brand-500">
+                            <option value="depok">Depok - Harmonika Node 1 (Utama)</option>
+                            <option value="boponter">Boponter - Fiber Edge 2</option>
+                            <option value="jakarta">Jakarta - IX Exchange 3</option>
+                        </select>
+                    </div>
+                    <div id="statusBadge" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-xs font-semibold text-slate-300 border border-slate-800">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="statusText">Siap Menguji Kecepatan</span>
+                    </div>
+                </div>
+
+                <!-- Main Test Area: Gauge & Statistics Panel -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Ping & Jitter Display (Left) -->
+                    <div class="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4 order-2 lg:order-1">
+                        <div class="glass-card p-4 rounded-2xl text-center">
+                            <div class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-1">
+                                <i class="fa-solid fa-network-wired text-brand-400 mr-1"></i> PING
+                            </div>
+                            <div class="text-3xl font-black text-white"><span id="pingValue">--</span> <span class="text-xs text-slate-400 font-normal">ms</span></div>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl text-center">
+                            <div class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-1">
+                                <i class="fa-solid fa-wave-square text-cyanAccent mr-1"></i> JITTER
+                            </div>
+                            <div class="text-3xl font-black text-white"><span id="jitterValue">--</span> <span class="text-xs text-slate-400 font-normal">ms</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Speedometer Gauge Center -->
+                    <div class="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
+                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
+                            
+                            <!-- SVG Gauge Ring -->
+                            <svg class="w-full h-full gauge-svg" viewBox="0 0 200 200">
+                                <!-- Gauge Background Arc -->
+                                <circle cx="100" cy="100" r="80" 
+                                        fill="none" 
+                                        stroke="#1e293b" 
+                                        stroke-width="12" 
+                                        stroke-dasharray="377" 
+                                        stroke-dashoffset="125" 
+                                        stroke-linecap="round"/>
+                                
+                                <!-- Active Progress Arc -->
+                                <circle id="gaugeProgress" class="gauge-meter" cx="100" cy="100" r="80" 
+                                        fill="none" 
+                                        stroke="url(#gaugeGradient)" 
+                                        stroke-width="12" 
+                                        stroke-dasharray="377" 
+                                        stroke-dashoffset="377" 
+                                        stroke-linecap="round"/>
+                                
+                                <defs>
+                                    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#0284c7" />
+                                        <stop offset="50%" stop-color="#0ea5e9" />
+                                        <stop offset="100%" stop-color="#00f2fe" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+
+                            <!-- Center Display overlay -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                                <div id="testLabel" class="text-xs uppercase tracking-widest font-black text-slate-400 mb-1">KECEPATAN</div>
+                                <div id="speedDisplay" class="text-5xl sm:text-6xl font-black tracking-tight text-white transition-all">0.0</div>
+                                <div id="unitDisplay" class="text-sm font-bold text-cyanAccent tracking-wider mt-1">Mbps</div>
+
+                                <!-- Start Button -->
+                                <button id="startBtn" onclick="toggleTest()" class="mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-brand-600 via-brand-500 to-cyanAccent text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-neon transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                                    <i id="btnIcon" class="fa-solid fa-play"></i>
+                                    <span id="btnText">MULAI TES</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download & Upload Display (Right) -->
+                    <div class="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4 order-3">
+                        <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden">
+                            <div id="downloadBar" class="absolute bottom-0 left-0 h-1 bg-brand-500 transition-all duration-200" style="width: 0%"></div>
+                            <div class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-1">
+                                <i class="fa-solid fa-download text-emerald-400 mr-1"></i> DOWNLOAD
+                            </div>
+                            <div class="text-3xl font-black text-white"><span id="downloadValue">0.0</span> <span class="text-xs text-slate-400 font-normal">Mbps</span></div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden">
+                            <div id="uploadBar" class="absolute bottom-0 left-0 h-1 bg-cyanAccent transition-all duration-200" style="width: 0%"></div>
+                            <div class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-1">
+                                <i class="fa-solid fa-upload text-cyanAccent mr-1"></i> UPLOAD
+                            </div>
+                            <div class="text-3xl font-black text-white"><span id="uploadValue">0.0</span> <span class="text-xs text-slate-400 font-normal">Mbps</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Speed Recommendation Result Box -->
+                <div id="resultRecommendation" class="hidden mt-8 p-6 rounded-2xl bg-gradient-to-r from-brand-950/90 to-slate-900 border border-brand-500/30 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-cyanAccent flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-extrabold text-white">Hasil Uji Selesai</h4>
+                            <p id="recommendationText" class="text-xs sm:text-sm text-slate-300">Koneksi Anda saat ini terdeteksi lancar. Pilih paket Harmonika Boponter untuk kecepatan tak terbatas!</p>
+                        </div>
+                    </div>
+                    <a href="#brosur" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyanAccent font-bold text-xs transition flex-shrink-0 border border-slate-700">
+                        Lihat Daftar Paket <i class="fa-solid fa-arrow-down ml-1"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="brosur" class="space-y-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-cyanAccent text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-bolt"></i> Harga Spesial Boponter
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                    Brosur Digital <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyanAccent">Paket WiFi Harmonika</span>
+                </h2>
+                <p class="text-slate-400 text-xs sm:text-sm">
+                    Koneksi cepat unlimited tanpa batas kuota FUP untuk rumah, usaha, gaming, dan video streaming.
+                </p>
+            </div>
+
+            <!-- Installation Fee Banner -->
+            <div class="max-w-md mx-auto">
+                <div class="p-0.5 rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyanAccent shadow-neon">
+                    <div class="bg-slate-950 rounded-[15px] p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-xl bg-brand-500/20 text-cyanAccent flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Biaya Installasi Pasang Baru</div>
+                                <div class="text-xl font-black text-white">Rp 150.000</div>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold">
+                            1x Bayar
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Package 10 Mbps -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">
+                                <i class="fa-solid fa-laptop text-brand-400 mr-1"></i> Starter
+                            </span>
+                            <span class="text-[11px] text-slate-400">Home WiFi</span>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white">10 Mbps</div>
+                            <p class="text-xs text-slate-400 mt-1">Hemat & Cukup Untuk Kebutuhan Dasar</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800">
+                            <div class="text-[11px] text-slate-400">Harga Langganan</div>
+                            <div class="text-2xl font-black text-brand-400 mt-0.5">
+                                Rp 125.000 <span class="text-xs text-slate-400 font-normal">/ bln</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Ideal untuk 1 - 3 Perangkat</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Browsing & Sosial Media</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Unlimited (Tanpa FUP)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6289663588165?text=Halo%20Pak%20Furkon,%20saya%20mau%20pasang%20Wifi%20Harmonika%20Boponter%20Paket%2010%20Mbps%20(Rp%20125.000)" target="_blank" class="mt-6 w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-extrabold text-xs transition text-center block">
+                        Pilih Paket 10 Mbps
+                    </a>
+                </div>
+
+                <!-- Package 15 Mbps (Popular) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group border-brand-500/60 shadow-neon">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-gradient-to-r from-brand-500 to-cyanAccent text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                        PALING POPULER
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-brand-500/20 text-cyanAccent text-xs font-bold">
+                                <i class="fa-solid fa-mobile-screen text-cyanAccent mr-1"></i> Favorit
+                            </span>
+                            <span class="text-[11px] text-slate-400">Family WiFi</span>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white">15 Mbps</div>
+                            <p class="text-xs text-slate-400 mt-1">Lancar Streaming & Belajar Online</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800">
+                            <div class="text-[11px] text-slate-400">Harga Langganan</div>
+                            <div class="text-2xl font-black text-cyanAccent mt-0.5">
+                                Rp 166.500 <span class="text-xs text-slate-400 font-normal">/ bln</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Ideal untuk 3 - 5 Perangkat</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Streaming YouTube & HD</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Unlimited (Tanpa FUP)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6289663588165?text=Halo%20Pak%20Furkon,%20saya%20mau%20pasang%20Wifi%20Harmonika%20Boponter%20Paket%2015%20Mbps%20(Rp%20166.500)" target="_blank" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyanAccent hover:from-brand-500 hover:to-cyanAccent text-slate-950 font-black text-xs shadow-neon transition text-center block">
+                        Pilih Paket 15 Mbps
+                    </a>
+                </div>
+
+                <!-- Package 20 Mbps -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">
+                                <i class="fa-solid fa-tv text-brand-400 mr-1"></i> Smart Home
+                            </span>
+                            <span class="text-[11px] text-slate-400">Super Fast</span>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white">20 Mbps</div>
+                            <p class="text-xs text-slate-400 mt-1">Kerja dari Rumah & Smart TV 4K</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800">
+                            <div class="text-[11px] text-slate-400">Harga Langganan</div>
+                            <div class="text-2xl font-black text-brand-400 mt-0.5">
+                                Rp 195.000 <span class="text-xs text-slate-400 font-normal">/ bln</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Ideal untuk 5 - 7 Perangkat</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Meeting Zoom & Kerja Online</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Unlimited (Tanpa FUP)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281285838377?text=Halo%20Pak%20Benyamin,%20saya%20mau%20pasang%20Wifi%20Harmonika%20Boponter%20Paket%2020%20Mbps%20(Rp%20195.000)" target="_blank" class="mt-6 w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-extrabold text-xs transition text-center block">
+                        Pilih Paket 20 Mbps
+                    </a>
+                </div>
+
+                <!-- Package 25 Mbps -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">
+                                <i class="fa-solid fa-gamepad text-brand-400 mr-1"></i> Gamer Pro
+                            </span>
+                            <span class="text-[11px] text-slate-400">Max Speed</span>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white">25 Mbps</div>
+                            <p class="text-xs text-slate-400 mt-1">Kecepatan Maksimal Tanpa Henti</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800">
+                            <div class="text-[11px] text-slate-400">Harga Langganan</div>
+                            <div class="text-2xl font-black text-brand-400 mt-0.5">
+                                Rp 222.000 <span class="text-xs text-slate-400 font-normal">/ bln</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Untuk 7+ Perangkat Sekaligus</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Gaming Online Low Ping</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Unlimited (Tanpa FUP)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281285838377?text=Halo%20Pak%20Benyamin,%20saya%20mau%20pasang%20Wifi%20Harmonika%20Boponter%20Paket%2025%20Mbps%20(Rp%20222.000)" target="_blank" class="mt-6 w-full py-3 rounded-xl bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-extrabold text-xs transition text-center block">
+                        Pilih Paket 25 Mbps
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="kontak" class="glass-panel rounded-3xl p-6 sm:p-10 border border-brand-500/30 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Vector Illustration of Technician wearing Cap, Glasses, Harmonika Polo & holding Router -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+                        <div class="absolute inset-0 bg-brand-500/20 rounded-full blur-3xl"></div>
+                        
+                        <!-- SVG Illustration matching Harmonika Boponter Tech -->
+                        <svg class="w-full h-full relative z-10" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background Aura Ring -->
+                            <circle cx="150" cy="150" r="130" fill="url(#techGradient)" />
+                            <circle cx="150" cy="150" r="128" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.5" stroke-dasharray="6 6"/>
+
+                            <!-- WiFi Waves Background -->
+                            <path d="M100 70 A 60 60 0 0 1 200 70" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                            <path d="M120 88 A 40 40 0 0 1 180 88" stroke="#00f2fe" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+                            
+                            <!-- Technician Body - Polo Shirt -->
+                            <path d="M75 285 C75 210 100 190 150 190 C200 190 225 210 225 285 Z" fill="#082f49"/>
+                            <path d="M125 190 L150 225 L175 190" fill="#0284c7"/>
+                            
+                            <!-- Harmonika Boponter Badge on Polo Chest -->
+                            <rect x="175" y="222" width="30" height="20" rx="4" fill="#0ea5e9"/>
+                            <text x="180" y="235" fill="#ffffff" font-size="7" font-weight="bold" font-family="sans-serif">HARMONIKA</text>
+
+                            <!-- Neck & Head -->
+                            <rect x="135" y="165" width="30" height="28" fill="#f1c27d" rx="6"/>
+                            <path d="M100 130 C100 175 200 175 200 130 C200 95 100 95 100 130 Z" fill="#f1c27d"/>
+                            
+                            <!-- Hair & Mustache -->
+                            <path d="M100 120 C100 100 200 100 200 120 C200 110 100 110 100 120 Z" fill="#1e293b"/>
+                            <path d="M135 152 C145 156 155 156 165 152" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M138 158 C145 162 155 162 162 158" stroke="#e11d48" stroke-width="2" fill="none"/>
+
+                            <!-- Glasses -->
+                            <rect x="112" y="120" width="32" height="22" rx="6" stroke="#0f172a" stroke-width="3.5" fill="none"/>
+                            <rect x="156" y="120" width="32" height="22" rx="6" stroke="#0f172a" stroke-width="3.5" fill="none"/>
+                            <line x1="144" y1="128" x2="156" y2="128" stroke="#0f172a" stroke-width="3.5"/>
+
+                            <!-- Backward Cap -->
+                            <path d="M98 115 C98 85 202 85 202 115 Z" fill="#334155"/>
+                            <rect x="130" y="76" width="40" height="10" rx="4" fill="#64748b"/>
+
+                            <!-- Router Held in Hands -->
+                            <rect x="90" y="240" width="120" height="38" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                            <!-- Router Antennas -->
+                            <line x1="105" y1="240" x2="95" y2="195" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="150" y1="240" x2="150" y2="190" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="195" y1="240" x2="205" y2="195" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+                            <!-- Router LEDs -->
+                            <circle cx="115" cy="259" r="3" fill="#10b981"/>
+                            <circle cx="127" cy="259" r="3" fill="#10b981"/>
+                            <circle cx="139" cy="259" r="3" fill="#10b981"/>
+                            <circle cx="151" cy="259" r="3" fill="#0ea5e9"/>
+
+                            <defs>
+                                <linearGradient id="techGradient" x1="0" y1="0" x2="300" y2="300">
+                                    <stop offset="0%" stop-color="#0c4a6e" />
+                                    <stop offset="100%" stop-color="#0369a1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Contact & Technician Support Details -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-cyanAccent">Layanan Pemasangan Boponter</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white mt-1">Hubungi Tim Layanan Kami</h3>
+                        <p class="text-slate-300 text-xs sm:text-sm mt-2">
+                            Pendaftaran mudah, respon cepat, dan tim teknisi berpengalaman siap melakukan survei serta pemasangan Wi-Fi di lokasi Anda.
+                        </p>
+                    </div>
+
+                    <!-- WhatsApp Contacts -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Furkon -->
+                        <div class="glass-card p-4 rounded-2xl flex items-center justify-between border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-white">Furkon</div>
+                                    <div class="text-xs text-slate-300 font-mono">0896-6358-8165</div>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6289663588165" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1">
+                                Chat <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                            </a>
+                        </div>
+
+                        <!-- Benyamin -->
+                        <div class="glass-card p-4 rounded-2xl flex items-center justify-between border-slate-700">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-white">Benyamin</div>
+                                    <div class="text-xs text-slate-300 font-mono">0812-8583-8377</div>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281285838377" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1">
+                                Chat <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Key Benefits -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center pt-2">
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-bolt text-cyanAccent text-base mb-1"></i>
+                            <div class="text-[11px] font-bold text-slate-300">Fiber Optik</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-infinity text-brand-400 text-base mb-1"></i>
+                            <div class="text-[11px] font-bold text-slate-300">Tanpa FUP</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-headset text-emerald-400 text-base mb-1"></i>
+                            <div class="text-[11px] font-bold text-slate-300">Support 24/7</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <i class="fa-solid fa-shield-halved text-amber-400 text-base mb-1"></i>
+                            <div class="text-[11px] font-bold text-slate-300">Ping Stabil</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/90 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <div class="flex items-center justify-center gap-2 text-lg font-black text-white">
+                <i class="fa-solid fa-wifi text-cyanAccent"></i> Harmonika ID - Boponter
+            </div>
+            <p class="text-xs text-slate-400 max-w-md mx-auto">
+                Layanan Wi-Fi internet rumah cepat, hemat, dan stabil untuk area Boponter dan sekitarnya.
+            </p>
+            <p class="text-[11px] text-slate-500 pt-2">
+                &copy; 2026 Harmonika ID Boponter. Hak Cipta Dilindungi Undang-Undang.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // State variables
+        let isTesting = false;
+        let animationFrameId = null;
+
+        // UI Element References
+        const startBtn = document.getElementById('startBtn');
+        const btnIcon = document.getElementById('btnIcon');
+        const btnText = document.getElementById('btnText');
+        const speedDisplay = document.getElementById('speedDisplay');
+        const testLabel = document.getElementById('testLabel');
+        const gaugeProgress = document.getElementById('gaugeProgress');
+        const statusText = document.getElementById('statusText');
+
+        const pingVal = document.getElementById('pingValue');
+        const jitterVal = document.getElementById('jitterValue');
+        const downloadVal = document.getElementById('downloadValue');
+        const uploadVal = document.getElementById('uploadValue');
+        const downloadBar = document.getElementById('downloadBar');
+        const uploadBar = document.getElementById('uploadBar');
+
+        const resultRecommendation = document.getElementById('resultRecommendation');
+        const recommendationText = document.getElementById('recommendationText');
+
+        // Gauge Math: Total circle length = 377
+        const MAX_GAUGE_OFFSET = 377;
+        const MIN_GAUGE_OFFSET = 125;
+
+        function updateGauge(speedMbps, maxMbps = 35) {
+            const clamped = Math.min(Math.max(speedMbps, 0), maxMbps);
+            const ratio = clamped / maxMbps;
+            const offset = MAX_GAUGE_OFFSET - (ratio * (MAX_GAUGE_OFFSET - MIN_GAUGE_OFFSET));
+            gaugeProgress.style.strokeDashoffset = offset;
+        }
+
+        function toggleTest() {
+            if (isTesting) return;
+            startTest();
+        }
+
+        function startTest() {
+            isTesting = true;
+            resultRecommendation.classList.add('hidden');
+            
+            // Lock UI
+            startBtn.disabled = true;
+            startBtn.classList.add('opacity-70');
+            btnIcon.className = "fa-solid fa-spinner fa-spin";
+            btnText.textContent = "MENGUJI...";
+
+            pingVal.textContent = "--";
+            jitterVal.textContent = "--";
+            downloadVal.textContent = "0.0";
+            uploadVal.textContent = "0.0";
+            downloadBar.style.width = "0%";
+            uploadBar.style.width = "0%";
+            speedDisplay.textContent = "0.0";
+
+            // Phase 1: Ping & Jitter simulation
+            statusText.textContent = "Menghubungkan ke Server Harmonika...";
+            testLabel.textContent = "CONNECTING";
+
+            setTimeout(() => {
+                const finalPing = Math.floor(Math.random() * 6) + 3; // 3 - 8 ms
+                const finalJitter = Math.floor(Math.random() * 3) + 1; // 1 - 3 ms
+                pingVal.textContent = finalPing;
+                jitterVal.textContent = finalJitter;
+
+                // Phase 2: Download Test
+                runDownloadTest();
+            }, 900);
+        }
+
+        function runDownloadTest() {
+            statusText.textContent = "Menguji Kecepatan Download...";
+            testLabel.textContent = "DOWNLOAD";
+
+            // Generate speed close to Harmonika packages (18 - 25.5 Mbps)
+            const targetSpeed = (Math.random() * 7.5 + 18).toFixed(1);
+            let current = 0;
+            const startTime = Date.now();
+            const duration = 3800;
+
+            function step() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const noise = (Math.random() - 0.5) * 1.8;
+                current = Math.min(targetSpeed, (progress * targetSpeed) + (progress > 0.4 ? noise : 0));
+                current = Math.max(0, current);
+
+                speedDisplay.textContent = current.toFixed(1);
+                downloadVal.textContent = current.toFixed(1);
+                downloadBar.style.width = `${Math.min(100, (current / 30) * 100)}%`;
+                updateGauge(current, 30);
+
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(step);
+                } else {
+                    speedDisplay.textContent = targetSpeed;
+                    downloadVal.textContent = targetSpeed;
+                    setTimeout(runUploadTest, 400);
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        function runUploadTest() {
+            statusText.textContent = "Menguji Kecepatan Upload...";
+            testLabel.textContent = "UPLOAD";
+
+            const targetSpeed = (Math.random() * 5 + 16).toFixed(1);
+            let current = 0;
+            const startTime = Date.now();
+            const duration = 3200;
+
+            function step() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const noise = (Math.random() - 0.5) * 1.2;
+                current = Math.min(targetSpeed, (progress * targetSpeed) + (progress > 0.4 ? noise : 0));
+                current = Math.max(0, current);
+
+                speedDisplay.textContent = current.toFixed(1);
+                uploadVal.textContent = current.toFixed(1);
+                uploadBar.style.width = `${Math.min(100, (current / 30) * 100)}%`;
+                updateGauge(current, 30);
+
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(step);
+                } else {
+                    speedDisplay.textContent = targetSpeed;
+                    uploadVal.textContent = targetSpeed;
+                    finishTest(parseFloat(downloadVal.textContent));
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        function finishTest(finalSpeed) {
+            isTesting = false;
+            statusText.textContent = "Pengujian Selesai";
+            testLabel.textContent = "HASIL AKHIR";
+
+            // Reset Button State
+            startBtn.disabled = false;
+            startBtn.classList.remove('opacity-70');
+            btnIcon.className = "fa-solid fa-rotate-right";
+            btnText.textContent = "TES ULANG";
+
+            updateGauge(finalSpeed, 30);
+
+            // Display Tailored Package Recommendation
+            resultRecommendation.classList.remove('hidden');
+            if (finalSpeed < 12) {
+                recommendationText.textContent = `Kecepatan Anda (${finalSpeed} Mbps). Tingkatkan ke Paket 15 Mbps (Rp 166.500/bln) Harmonika Boponter untuk streaming bebas hambatan!`;
+            } else if (finalSpeed < 20) {
+                recommendationText.textContent = `Hasil (${finalSpeed} Mbps) sudah baik! Nikmati koneksi lebih stabil dengan Paket 20 Mbps (Rp 195.000/bln) Harmonika Boponter.`;
+            } else {
+                recommendationText.textContent = `Sangat kencang (${finalSpeed} Mbps)! Pilih Paket 25 Mbps (Rp 222.000/bln) untuk gaming dan multi-device tanpa kendala.`;
+            }
+        }
+    </script>
+</body>
+</html>
